@@ -1974,7 +1974,7 @@ class Client extends MatrixApi {
       }
     } on SyncConnectionException catch (e, s) {
       Logs().w('Syncloop failed: Client has not connection to the server');
-      Logs().w('Syncloop failed: Error: $e');
+      Logs().w('Syncloop failed: Error: $e, $s');
       onSyncStatus.add(SyncStatusUpdate(SyncStatus.error,
           error: SdkError(exception: e, stackTrace: s)));
     } catch (e, s) {
