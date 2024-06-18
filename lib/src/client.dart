@@ -1893,12 +1893,12 @@ class Client extends MatrixApi {
         since: prevBatch,
         timeout: timeout.inMilliseconds,
         setPresence: syncPresence,
-      ).then((v) => Future<SyncUpdate?>.value(v)).catchError((e) {
+      ).then((v) => Future<SyncUpdate?>.value(v)).catchError((e, s) {
         if (e is MatrixException) {
           syncError = e;
         } else {
           syncError = SyncConnectionException(e);
-          Logs().w('Syncloop failed: Error: $e');
+          Logs().w('Syncloop failed: Error: $e, $s');
         }
         return null;
       });
